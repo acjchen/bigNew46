@@ -6,7 +6,7 @@ $(function () {
         type: 'get',
         dataType: 'json',
         success: function (backData) {
-            console.log(backData);
+            // console.log(backData);
             if (backData.code == 200) {
                 $('.user_info span').text(`欢迎  ${backData.data.nickname}`);
                 $('.user_info img').attr('src', backData.data.userPic);
