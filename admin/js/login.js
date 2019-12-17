@@ -13,7 +13,7 @@
             //进行非空判断,并给提示
             if (username == "" || password == "") {
                 $('.modal-body p').text('账号或密码不能为空,请重新输入');
-                $('#myModal').modal();
+                $('#myModal').modal({ keyboard: true });
                 return;
             }
             // 发送ajax请求
@@ -27,16 +27,21 @@
                 success: function (backData) {
                     console.log(backData);
                     if (backData.code == 200) {
-                        // alert(backData.msg);
-                        $('.modal-body p').text('登录成功');
-                        $('#myModal').modal();
+                        $('.modal-body p').text(backData.msg);
+                        $('#myModal').modal({ keyboard: true });
                         $('#myModal').on('hidden.bs.modal', function (e) {
+                            localStorage.setItem('token',backData.token);
                             window.location.href = '../../admin/index.html';
                         })
                     } else {
-                        alert(backData.msg);
-                        $('.input_txt').val('');
-                        $('.input_pass').val('');
+                        // alert(backData.msg);
+                        $('.modal-body p').text(backData.msg);
+                        $('#myModal').modal({ keyboard: true });
+                        $('#myModal').on('hidden.bs.modal', function (e) {
+                            $('.input_txt').val('');
+                            $('.input_pass').val('');
+                        })
+
                     }
                 }
             });
