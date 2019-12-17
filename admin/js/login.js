@@ -31,7 +31,7 @@
                         $('#myModal').modal({ keyboard: true });
                         $('#myModal').on('hidden.bs.modal', function (e) {
                             localStorage.setItem('token',backData.token);
-                            window.location.href = '../../admin/index.html';
+                            window.location.href = './index.html';
                         })
                     } else {
                         // alert(backData.msg);
