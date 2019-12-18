@@ -14,7 +14,7 @@ $(function () {
                 // $('.email').val(backData.data.email)
                 // $('.password').val(backData.data.password)
                 //优化代码
-                for(var key in backData.data){
+                for (var key in backData.data) {
                     $(`.${key}`).val(backData.data[key]);
                 }
                 $('.user_pic').attr('src', backData.data.userPic)
@@ -33,20 +33,37 @@ $(function () {
     });
 
     //修改按钮发送ajax请求
-    $('.btn-edit').on('click',function(e){
+    $('.btn-edit').on('click', function (e) {
         //禁用表单默认提交事件
         e.preventDefault();
         //创建FormData对象：参数是表单dom对象
         var fd = new FormData($('form')[0]);
+        // 遍历对象中所有的键值对
+        // for (var pair of fd.entries()) {
+        //     console.log(pair[0] + ', ' + pair[1]);
+        // }
+
+        //非空判断
+        //遍历对象中所有的值
+        for (var value of fd.values()) {
+            console.log(value);
+            if (value == '') {
+                alert('修改的内容不能为空');
+                return;
+            }
+        }
         $.ajax({
-            url:BigNew.user_edit,
-            type:'post',
-            dataType:'json',
-            data:fd,
+            url: BigNew.user_edit,
+            type: 'post',
+            dataType: 'json',
+            data: fd,
             contentType: false,
             processData: false,
-            success: function(backData){
+            success: function (backData) {
                 console.log(backData);
+                if (backData.code == 200) {
+                    window.parent.location.reload();
+                }
             }
         });
     });
