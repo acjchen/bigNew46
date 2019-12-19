@@ -14,6 +14,23 @@
     <script src="./libs/bootstrap/js/bootstrap.min.js"></script>
     <!-- 引入模板引擎js文件 -->
     <script src="./libs/template-web.js"></script>
+    <!-- 创建模板 -->
+    <script id="categoryTemp" type="text/html">
+        {{each data v}}
+            <tr>
+                <td>{{v.name}}</td>
+                <td>{{v.slug}}</td>
+                <td class="text-center">
+                    <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" btn-id={{v.id}} class=" btn btn-info btn-xs">编辑</a>
+                    <a href="javascript:void(0);" btn-id={{v.id}} class="btn btn-danger btn-xs delete">删除</a>
+                </td>
+            </tr>
+        {{/each}}
+    </script>
+
+    <script src="./js/http.js"></script>
+    <script src="./js/article_category.js"></script>
+
 </head>
 
 <body>
@@ -31,25 +48,56 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <!-- <tr>
                         <td>奇趣事</td>
                         <td>funny</td>
                         <td class="text-center">
                             <a href="javascript:void(0);" data-toggle="modal" class=" btn btn-info btn-xs">编辑</a>
                             <a href="javascript:void(0);" class="btn btn-danger btn-xs">删除</a>
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="3" class="text-center">
-                            <a href="javascript:void(0)" class="btn btn-success" id="xinzengfenlei" data-toggle="modal"
-                                data-target="#myModal">新增分类</a>
+                            <a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-success" id="xinzengfenlei">新增分类</a>
                         </td>
                     </tr>
                 </tfoot>
             </table>
         </div>
     </div>
+
+    <!-- 引入模态框 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true" class="cancle">&times;</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">新增分类</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">分类名称:</label>
+                            <input type="text" class="form-control artname"  id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">分类别名:</label>
+                            <input type="text" class="form-control artslug"  id="message-text">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default cancle" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary comfirm">新增</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
 
 </html>

@@ -25,10 +25,12 @@ $(function () {
     })
     //侧边栏点击事件
     $('.level01').on('click', function () {
+        //一级菜单
         $(this).addClass('active').siblings().removeClass('active');
         if ($(this).index() == 1) {
             $(this).find('b').toggleClass('rotate0');
             $('.level02').slideToggle();
+            //二级菜单
             $('.level02 li').on('click', function () {
                 $(this).addClass('active').siblings().removeClass('active');
             })
@@ -41,6 +43,7 @@ $(function () {
             $('.level02 li:eq(0) a')[0].click();
         } else {
             $('.level02 li').removeClass('active');
+            // $('.level02').slideUp();
         }
 
     })

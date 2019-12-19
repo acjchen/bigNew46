@@ -37,7 +37,7 @@ $(function () {
         //禁用表单默认提交事件
         e.preventDefault();
         //创建FormData对象：参数是表单dom对象
-        var fd = new FormData($('form')[0]);
+        var fd = new FormData($('#form')[0]);
         // 遍历对象中所有的键值对
         // for (var pair of fd.entries()) {
         //     console.log(pair[0] + ', ' + pair[1]);
@@ -46,12 +46,13 @@ $(function () {
         //非空判断
         //遍历对象中所有的值
         for (var value of fd.values()) {
-            console.log(value);
+            // console.log(value);
             if (value == '') {
                 alert('修改的内容不能为空');
                 return;
             }
         }
+
         $.ajax({
             url: BigNew.user_edit,
             type: 'post',
