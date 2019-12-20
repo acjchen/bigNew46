@@ -21,8 +21,10 @@ $(function () {
             $('.modal-footer .comfirm').text('新增');
         } else if ($(target).text() == '编辑') {
             $('.modal-footer .comfirm').text('编辑');
-            var artname = $('.form-group .artname').val($(target).parent().parent().children().eq(0).text());
-            var artslug = $('.form-group .artslug').val($(target).parent().parent().children().eq(1).text());
+            var artname = $('.form-group .artname').val($(target).parent().prev().prev().text());
+            var artslug = $('.form-group .artslug').val($(target).parent().prev().text());
+            // var artname = $('.form-group .artname').val($(target).parent().parent().children().eq(0).text());
+            // var artslug = $('.form-group .artslug').val($(target).parent().parent().children().eq(1).text());
             $('.comfirm').attr('artid', $(target).attr('btn-id'));
         }
     });
@@ -95,7 +97,7 @@ $(function () {
             url: BigNew.category_delete,
             type: 'post',
             dataType: 'json',
-            data: { id: id },
+            data: { id:id },
             success: function (backData) {
                 // console.log(backData);
                 if (backData.code == 204) {
