@@ -12,6 +12,32 @@
   <link rel="stylesheet" href="css/main.css">
   <script src="./libs/jquery-1.12.4.min.js"></script>
   <script src="./libs/template-web.js"></script>
+  <!-- 评论模板 -->
+  <script id="comment" type="text/html">
+    {{each data.data v}}
+        <tr>
+          <td>{{v.author}}</td>
+          <td>{{v.content}}</td>
+          <td>{{v.title}}</td>
+          <td>{{v.date}} {{v.time}}</td>
+          <td>{{v.state}}</td>
+          <td class="text-center">
+            {{if v.state == '已通过'}}
+            <a href="javascript:void(0);;" btn-id={{v.id}} class="btn btn-warning btn-xs reject">拒绝</a>
+            {{else if v.state == '待审核'}}
+            <a href="javascript:void(0);;" btn-id={{v.id}} class="btn btn-info btn-xs pass">批准</a>
+            {{/if}}
+            <a href="javascript:void(0);;" btn-id={{v.id}} class="btn btn-danger btn-xs delete">删除</a>
+          </td>
+        </tr>
+    {{/each}}
+  </script>
+  <!-- 分页插件导包 -->
+  <script src="./libs/jquery.twbsPagination.js"></script>
+
+
+  <script src="./js/http.js"></script>
+  <script src="./js/comment_list.js"></script>
 </head>
 
 <body>
@@ -32,7 +58,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <!-- <tr>
             <td>小周</td>
             <td>这是一条测试评论，欢迎光临</td>
             <td>《世界，你好》</td>
@@ -138,11 +164,11 @@
               <a href="javascript:editTr( 'rejected',11 );" class="btn btn-warning btn-xs">拒绝</a>
               <a href="javascript:editTr( 'trashed',11 );" class="btn btn-danger btn-xs">删除</a>
             </td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
       <div class="row text-center">
-        <ul class="pagination pagination-sm">
+        <!-- <ul class="pagination pagination-sm">
           <li class="page-item first disabled"><a href="#" class="page-link">首页</a></li>
           <li class="page-item prev disabled"><a href="#" class="page-link">上一页</a></li>
           <li class="page-item active"><a href="#" class="page-link">1</a></li>
@@ -154,7 +180,7 @@
           <li class="page-item"><a href="#" class="page-link">7</a></li>
           <li class="page-item next"><a href="#" class="page-link">下一页</a></li>
           <li class="page-item last"><a href="#" class="page-link">尾页</a></li>
-        </ul>
+        </ul> -->
         <ul id="pagination" class="pagination-sm"></ul>
       </div>
 

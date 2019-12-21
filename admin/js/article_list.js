@@ -97,38 +97,29 @@ $(function () {
 
     //删除文章,因为是动态生成需要委托注册点击事件
     $('tbody').on('click', '.delete', function () {
-        var $that = $(this);
+        // var $that = $(this);
         var id = $(this).attr('btn-id');
-        console.log(id);
+        // console.log(id);
         $.ajax({
-            url:BigNew.article_delete,
-            type:'post',
+            url: BigNew.article_delete,
+            type: 'post',
             dataType: 'json',
-            data: { id:id },
+            data: { id: id },
             success: function (backData) {
                 console.log(backData);
                 if (backData.code == 204) {
                     alert('删除成功');
-                    $that.parent().parent().remove();
+                    // $that.parent().parent().remove();
+                    window.location.reload();
                 }
             }
         });
     })
 
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //点击页面右上角发表文章按钮,右边侧边栏的发表文章要高亮
+    $('#release_btn').on('click',function(){
+        //点击在本页面做,响应在父窗口做
+        $('.level02>li:eq(1)',window.parent.document).addClass('active').siblings().removeClass('active');
+    })
+ 
 })
