@@ -51,7 +51,6 @@ $(function () {
     //批准
     $('tbody').on('click','.pass', function () {
         var id = $(this).attr('btn-id');
-        var $that = $(this);
         $.ajax({
             url: BigNew.comment_pass,
             type: 'post',
@@ -61,8 +60,7 @@ $(function () {
                 // console.log(backData);
                 if (backData.code == 200) {
                     alert(backData.msg);
-                    $that.parent().prev().html('已通过');
-                    $that.html('拒绝').addClass('btn-warning').removeClass('btn-info');
+                    window.location.reload()
                 }
             }
         });
@@ -70,7 +68,6 @@ $(function () {
     //拒绝
     $('tbody').on('click','.reject',function () {
         var id = $(this).attr('btn-id');
-        var $that = $(this);
         $.ajax({
             url: BigNew.comment_reject,
             type: 'post',
@@ -80,8 +77,7 @@ $(function () {
                 // console.log(backData);
                 if (backData.code == 200) {
                     alert(backData.msg);
-                    $that.parent().prev().html('已拒绝');
-                    $that.remove();
+                    window.location.reload()
                 }
             }
         });
@@ -89,7 +85,6 @@ $(function () {
     //删除功能
     $('tbody').on('click','.delete', function () {
         var id = $(this).attr('btn-id');
-        var $that = $(this);
         $.ajax({
             url: BigNew.comment_delete,
             type: 'post',

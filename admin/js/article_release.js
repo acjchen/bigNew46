@@ -60,6 +60,7 @@ $(function () {
                 if (backData.code == 200) {
                     alert(backData.msg);
                     window.location.href = './article_list.html'
+                    $('.level02>li:eq(0)',window.parent.document).addClass('active').siblings().removeClass('active');
                 }
             }
         });
